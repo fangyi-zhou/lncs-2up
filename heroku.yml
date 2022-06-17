@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicore app:app
+  web: gunicorn app:app
