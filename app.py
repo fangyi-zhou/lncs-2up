@@ -1,7 +1,9 @@
 from flask import Flask
+import shutil
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "It works!"
+    has_psutil = shutil.which("pstops")
+    return "It works!" if has_psutil else "It doesn't work."
