@@ -11,10 +11,20 @@ def is_pdf(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() == "pdf"
 
 
+IT_WORKS = """
+<!doctype html>
+<title>LNCS 2UP</title>
+<form method=post action=/process enctype=multipart/form-data>
+  <input type=file name=file>
+  <input type=submit value=Process>
+</form>
+"""
+
+
 @app.route("/")
 def hello():
     has_psutil = shutil.which("pstops")
-    return "It works!" if has_psutil else "It doesn't work."
+    return IT_WORKS if has_psutil else "It doesn't work."
 
 
 @app.route("/process", methods=["POST"])
