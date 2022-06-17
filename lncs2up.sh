@@ -29,9 +29,10 @@ fi
 
 TMPDIR=$(mktemp -d)
 INPUTFILE=$(basename -- "$1")
+OUTPUTDIR=$(dirname -- "$1")
 
 cp "$1" "$TMPDIR/input.pdf"
 pdf2ps "$TMPDIR/input.pdf" "$TMPDIR/input.ps"
 pstops '2:0L@.95(8.75in,0in)+1L@.95(8.75in,6in)' "$TMPDIR/input.ps" "$TMPDIR/output.ps"
 ps2pdf "$TMPDIR/output.ps" "$TMPDIR/output.pdf"
-cp "$TMPDIR/output.pdf" "${INPUTFILE%.*}_out.pdf"
+cp "$TMPDIR/output.pdf" "$OUTPUTDIR/${INPUTFILE%.*}_out.pdf"
